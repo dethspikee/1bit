@@ -7,6 +7,8 @@ authors = ["Damian Tabor <zettie008@gmail.com>"]
 [tool.poetry.dependencies]
 python = ">=3.9, <3.10"
 PySide2 = "^5.15.2"
+Pillow = "^8.4.0"
+numpy = "^1.21.3"
 
 [tool.poetry.dev-dependencies]
 blue = "^0.7.0"
