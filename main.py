@@ -41,14 +41,12 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def open_file_dialog(self):
-        fileName = QtWidgets.QFileDialog.getOpenFileName(self,
+        filename, _ = QtWidgets.QFileDialog.getOpenFileName(self,
             "Open Image", ".", "Image Files (*.png *.jpg *.jpeg *.bmp)")
-
-        print(fileName)
 
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
-    test = MainWindow()
-    test.show()
+    mw = MainWindow()
+    mw.show()
     sys.exit(app.exec_())
