@@ -1,6 +1,7 @@
 import sys
 
 from PySide2 import QtCore, QtWidgets, QtGui
+from converter import convert
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -34,15 +35,18 @@ class MainWindow(QtWidgets.QMainWindow):
         geometry = qApp.desktop().availableGeometry(self)
         self.setFixedSize(geometry.width() * 0.5, geometry.height() * 0.5)
 
-        textbox = QtWidgets.QWidget
-
-        self.setCentralWidget(QtWidgets.QTextEdit())
-
     @QtCore.Slot()
     def open_file_dialog(self):
         filename, _ = QtWidgets.QFileDialog.getOpenFileName(
             self, 'Open Image', '.', 'Image Files (*.png *.jpg *.jpeg *.bmp)'
         )
+
+        geometry = qApp.desktop().availableGeometry(self)
+        bytestr = convert(filename)
+        textbox = QtWidgets.QTextEdit(bytestr, self)
+        textbox.setLineWrapMode(QtWidgets.QTextEdit.FixedPixelWidth)
+        textbox.setLineWrapColumnOrWidth(geometry.width() * 0.25)
+        self.setCentralWidget(textbox)
 
 
 if __name__ == '__main__':
