@@ -1,5 +1,4 @@
 import sys
-import random
 
 from PySide2 import QtCore, QtWidgets, QtGui
 
@@ -42,9 +41,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def open_file_dialog(self):
-        options = QtWidgets.QFileDialog.Options()
         fileName = QtWidgets.QFileDialog.getOpenFileName(self,
             "Open Image", ".", "Image Files (*.png *.jpg *.jpeg *.bmp)")
+
+        print(fileName)
 
 
 if __name__ == '__main__':
