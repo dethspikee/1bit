@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "1bit-gui"
+version = "0.1.0"
+description = ""
+authors = ["Damian Tabor <zettie008@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.9, <3.10"
+PySide2 = "^5.15.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
