@@ -41,12 +41,18 @@ class MainWindow(QtWidgets.QMainWindow):
             self, 'Open Image', '.', 'Image Files (*.png *.jpg *.jpeg *.bmp)'
         )
 
-        geometry = qApp.desktop().availableGeometry(self)
-        bytestr = convert(filename)
-        textbox = QtWidgets.QTextEdit(bytestr, self)
-        textbox.setLineWrapMode(QtWidgets.QTextEdit.FixedPixelWidth)
-        textbox.setLineWrapColumnOrWidth(geometry.width() * 0.25)
-        self.setCentralWidget(textbox)
+        # geometry = qApp.desktop().availableGeometry(self)
+        # bytestr = convert(filename)
+        # textbox = QtWidgets.QTextEdit(bytestr, self)
+        # textbox.setLineWrapMode(QtWidgets.QTextEdit.FixedPixelWidth)
+        # textbox.setLineWrapColumnOrWidth(geometry.width() * 0.25)
+        # self.setCentralWidget(textbox)
+
+        label = QtWidgets.QLabel(parent=self)
+        pixmap = QtGui.QPixmap(filename)
+        label.setPixmap(pixmap)
+        label.setAlignment(QtCore.Qt.AlignCenter)
+        self.setCentralWidget(label)
 
 
 if __name__ == '__main__':
