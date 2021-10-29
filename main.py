@@ -36,7 +36,6 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Status Bar
         self.status = self.statusBar()
-        self.status.showMessage('Get byte array')
 
         # Window dimensions
         geometry = qApp.desktop().availableGeometry(self)
@@ -64,6 +63,7 @@ class MainWindow(QtWidgets.QMainWindow):
         pixmap = QtGui.QPixmap(filename)
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
+        self.status.showMessage(f'{filename} loaded successfully', timeout=5000)
 
 
 if __name__ == '__main__':
