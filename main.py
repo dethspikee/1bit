@@ -8,7 +8,7 @@ class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle('Eartquakes information')
+        self.setWindowTitle('1bit')
 
         # Menu
         self.menu = self.menuBar()
