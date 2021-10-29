@@ -14,6 +14,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.menu = self.menuBar()
         self.file_menu = self.menu.addMenu('File')
 
+        # Disable context menu for main window
+        self.setContextMenuPolicy(QtGui.Qt.PreventContextMenu)
+
         # Open QAction
         open_action = QtWidgets.QAction('Open', self)
         open_action.setShortcut(QtGui.QKeySequence.Quit)
@@ -26,6 +29,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
         self.file_menu.addAction(open_action)
         self.file_menu.addAction(exit_action)
+
+        # Toolbar
+        toolbar = QtWidgets.QToolBar(self)
+        self.addToolBar(toolbar)
 
         # Status Bar
         self.status = self.statusBar()
