@@ -44,12 +44,12 @@ class MainWindow(QtWidgets.QMainWindow):
         # Layout
         window = QtWidgets.QWidget()
         self.label = QtWidgets.QLabel(parent=self)
-        self.button = QtWidgets.QPushButton('Two')
+        self.preview_btn = QtWidgets.QPushButton('Preview')
 
         layout = QtWidgets.QGridLayout()
 
         layout.addWidget(self.label, 0, 0)
-        layout.addWidget(self.button, 1, 0)
+        layout.addWidget(self.preview_btn, 1, 0)
 
         window.setLayout(layout)
         self.setCentralWidget(window)
@@ -63,9 +63,7 @@ class MainWindow(QtWidgets.QMainWindow):
         pixmap = QtGui.QPixmap(filename)
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.status.showMessage(
-            f'{filename} loaded successfully'
-        )
+        self.status.showMessage( f'{filename} loaded successfully')
 
 
 if __name__ == '__main__':
