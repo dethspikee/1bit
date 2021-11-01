@@ -63,7 +63,7 @@ class MainWindow(QtWidgets.QMainWindow):
         pixmap = QtGui.QPixmap(filename)
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.status.showMessage( f'{filename} loaded successfully')
+        self.status.showMessage(f'{filename} loaded successfully')
 
 
 if __name__ == '__main__':
