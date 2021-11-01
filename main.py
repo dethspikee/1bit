@@ -64,7 +64,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.status.showMessage(
-            f'{filename} loaded successfully', timeout=5000
+            f'{filename} loaded successfully'
         )
 
 
