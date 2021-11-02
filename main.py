@@ -45,13 +45,19 @@ class MainWindow(QtWidgets.QMainWindow):
         window = QtWidgets.QWidget()
         self.label = QtWidgets.QLabel(parent=self)
         self.preview_btn = QtWidgets.QPushButton('Preview')
+        self.convert_btn = QtWidgets.QPushButton('Convert')
 
         layout = QtWidgets.QGridLayout()
 
         layout.addWidget(self.label, 0, 0)
-        layout.addWidget(self.preview_btn, 1, 0)
 
+        button_layout = QtWidgets.QHBoxLayout()
+        button_layout.addWidget(self.preview_btn)
+        button_layout.addWidget(self.convert_btn)
+
+        layout.addLayout(button_layout, 1, 0)
         window.setLayout(layout)
+
         self.setCentralWidget(window)
 
     @QtCore.Slot()
