@@ -7,9 +7,9 @@ from converter import convert
 class MainWindow(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
+        self.is_image_open = False
 
         self.setWindowTitle('1bit')
-
         # Menu
         self.menu = self.menuBar()
         self.file_menu = self.menu.addMenu('File')
@@ -47,8 +47,11 @@ class MainWindow(QtWidgets.QMainWindow):
         self.preview_btn = QtWidgets.QPushButton('Preview')
         self.convert_btn = QtWidgets.QPushButton('Convert')
 
-        layout = QtWidgets.QGridLayout()
+        # Disable those buttons at start
+        self.preview_btn.setDisabled(True)
+        self.convert_btn.setDisabled(True)
 
+        layout = QtWidgets.QGridLayout()
         layout.addWidget(self.label, 0, 0)
 
         button_layout = QtWidgets.QHBoxLayout()
