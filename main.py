@@ -1,6 +1,8 @@
 import sys
+import io
 
 from PySide2 import QtCore, QtWidgets, QtGui
+from PIL import Image
 from converter import convert
 
 
@@ -45,6 +47,7 @@ class MainWindow(QtWidgets.QMainWindow):
         window = QtWidgets.QWidget()
         self.label = QtWidgets.QLabel(parent=self)
         self.preview_btn = QtWidgets.QPushButton('Preview')
+        self.preview_btn.clicked.connect(self.preview)
         self.convert_btn = QtWidgets.QPushButton('Convert')
 
         # Disable those buttons at start
@@ -65,18 +68,28 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def preview(self):
-        pass
+        self.preview_btn.setDisabled(True)
+        img = Image.open(self.filename)
+        img_converted = img.resize((128, 64)).convert('1', dither=Image.NONE)
+        bytes_img = io.BytesIO()
+        img_converted.save(bytes_img, format=img.format)
+        qimg = QtGui.QImage()
+        qimg.loadFromData(bytes_img.getvalue())
+        pixmap = QtGui.QPixmap(qimg)
+        self.label.setPixmap(pixmap)
+        self.status.showMessage(f'Previewing {self.filename} as 1-bit bitmap')
+
 
     @QtCore.Slot()
     def open_file_dialog(self):
-        filename, _ = QtWidgets.QFileDialog.getOpenFileName(
+        self.filename, _ = QtWidgets.QFileDialog.getOpenFileName(
             self, 'Open Image', '.', 'Image Files (*.png *.jpg *.jpeg *.bmp)'
         )
 
-        pixmap = QtGui.QPixmap(filename)
+        pixmap = QtGui.QPixmap(self.filename)
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.status.showMessage(f'{filename} loaded successfully')
+        self.status.showMessage(f'{self.filename} loaded successfully')
         self.preview_btn.setDisabled(False)
         self.convert_btn.setDisabled(False)
 
