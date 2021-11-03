@@ -64,6 +64,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(window)
 
     @QtCore.Slot()
+    def preview(self):
+        pass
+
+    @QtCore.Slot()
     def open_file_dialog(self):
         filename, _ = QtWidgets.QFileDialog.getOpenFileName(
             self, 'Open Image', '.', 'Image Files (*.png *.jpg *.jpeg *.bmp)'
@@ -73,6 +77,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.status.showMessage(f'{filename} loaded successfully')
+        self.preview_btn.setDisabled(False)
+        self.convert_btn.setDisabled(False)
 
 
 if __name__ == '__main__':
