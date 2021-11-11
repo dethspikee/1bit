@@ -52,6 +52,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.preview_btn = QtWidgets.QPushButton('Preview')
         self.preview_btn.clicked.connect(self.preview)
         self.convert_btn = QtWidgets.QPushButton('Convert')
+        self.convert_btn.clicked.connect(self.get_bytes)
         # Disable those buttons at start
         self.preview_btn.setDisabled(True)
         self.convert_btn.setDisabled(True)
@@ -74,6 +75,16 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(window)
 
     @QtCore.Slot()
+    def get_bytes(self):
+        try:
+            img_bytearray = convert(self.filename)
+            self.textedit.setText(img_bytearray)
+        except:
+            pass
+        else:
+            self.status.showMessage(f'Converted {self.filename} to byte array')
+
+    @QtCore.Slot()
     def preview(self):
         self.preview_btn.setDisabled(True)
         img = Image.open(self.filename)
@@ -92,6 +103,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.filename, _ = QtWidgets.QFileDialog.getOpenFileName(
             self, 'Open Image', '.', 'Image Files (*.png *.jpg *.jpeg *.bmp)'
         )
+
+        self.textedit.clear()
 
         pixmap = QtGui.QPixmap(self.filename)
         self.label.setPixmap(pixmap)
