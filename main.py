@@ -37,8 +37,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.status = self.statusBar()
 
         # Window dimensions
-        geometry = qApp.desktop().availableGeometry(self)
-        self.setFixedSize(geometry.width() * 0.5, geometry.height() * 0.5)
+        self.geometry = qApp.desktop().availableGeometry(self)
+        self.setFixedSize(self.geometry.width() * 0.5, self.geometry.height() * 0.5)
 
         # Layout
         window = QtWidgets.QWidget()
@@ -106,6 +106,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.textedit.clear()
 
         pixmap = QtGui.QPixmap(self.filename)
+        pixmap = pixmap.scaled(QtCore.QSize(self.geometry.width() * 0.5,
+            self.geometry.height() * 0.5), QtCore.Qt.KeepAspectRatio)
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.status.showMessage(f'{self.filename} loaded successfully')
