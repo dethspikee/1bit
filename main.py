@@ -38,7 +38,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Window dimensions
         self.geometry = qApp.desktop().availableGeometry(self)
-        self.setFixedSize(self.geometry.width() * 0.5, self.geometry.height() * 0.5)
+        self.computedWidth = self.geometry.width() * 0.5
+        self.computedHeight = self.geometry.height() * 0.5
+        self.setFixedSize(self.computedWidth, self.computedHeight)
 
         # Layout
         window = QtWidgets.QWidget()
@@ -106,8 +108,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.textedit.clear()
 
         pixmap = QtGui.QPixmap(self.filename)
-        pixmap = pixmap.scaled(QtCore.QSize(self.geometry.width() * 0.5,
-            self.geometry.height() * 0.5), QtCore.Qt.KeepAspectRatio)
+        pixmap_w, pixmap_h = pixmap.size().width(), pixmap.size().height()
+        if not (pixmap_w < self.computedWidth and pixmap_h < self.computedHeight):
+            pixmap = pixmap.scaled(self.computedWidth, self.computedHeight, QtCore.Qt.KeepAspectRatio)
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.status.showMessage(f'{self.filename} loaded successfully')
