@@ -46,8 +46,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label = QtWidgets.QLabel(parent=self)
         self.textedit = QtWidgets.QTextEdit()
 
-        self.label.setSizePolicy(QtWidgets.QSizePolicy.Ignored,
-            QtWidgets.QSizePolicy.Ignored)
+        self.label.setSizePolicy(
+            QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored
+        )
 
         self.preview_btn = QtWidgets.QPushButton('Preview')
         self.preview_btn.clicked.connect(self.preview)
@@ -56,7 +57,6 @@ class MainWindow(QtWidgets.QMainWindow):
         # Disable those buttons at start
         self.preview_btn.setDisabled(True)
         self.convert_btn.setDisabled(True)
-
 
         layout_skeleton = QtWidgets.QVBoxLayout()
 
@@ -96,7 +96,6 @@ class MainWindow(QtWidgets.QMainWindow):
         pixmap = QtGui.QPixmap(qimg)
         self.label.setPixmap(pixmap)
         self.status.showMessage(f'Previewing {self.filename} as 1-bit bitmap')
-
 
     @QtCore.Slot()
     def open_file_dialog(self):
