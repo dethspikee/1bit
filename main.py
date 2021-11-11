@@ -33,10 +33,6 @@ class MainWindow(QtWidgets.QMainWindow):
         self.file_menu.addAction(open_action)
         self.file_menu.addAction(exit_action)
 
-        # Toolbar
-        toolbar = QtWidgets.QToolBar(self)
-        self.addToolBar(toolbar)
-
         # Status Bar
         self.status = self.statusBar()
 
