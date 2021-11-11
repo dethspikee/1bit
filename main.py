@@ -46,25 +46,35 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Layout
         window = QtWidgets.QWidget()
+
         self.label = QtWidgets.QLabel(parent=self)
+        self.textedit = QtWidgets.QTextEdit()
+
+        self.label.setSizePolicy(QtWidgets.QSizePolicy.Ignored,
+            QtWidgets.QSizePolicy.Ignored)
+
         self.preview_btn = QtWidgets.QPushButton('Preview')
         self.preview_btn.clicked.connect(self.preview)
         self.convert_btn = QtWidgets.QPushButton('Convert')
-
         # Disable those buttons at start
         self.preview_btn.setDisabled(True)
         self.convert_btn.setDisabled(True)
 
-        layout = QtWidgets.QGridLayout()
-        layout.addWidget(self.label, 0, 0)
+
+        layout_skeleton = QtWidgets.QVBoxLayout()
+
+        top_layout = QtWidgets.QHBoxLayout()
+        top_layout.addWidget(self.label, stretch=1)
+        top_layout.addWidget(self.textedit, stretch=1)
 
         button_layout = QtWidgets.QHBoxLayout()
         button_layout.addWidget(self.preview_btn)
         button_layout.addWidget(self.convert_btn)
 
-        layout.addLayout(button_layout, 1, 0)
-        window.setLayout(layout)
+        layout_skeleton.addLayout(top_layout)
+        layout_skeleton.addLayout(button_layout)
 
+        window.setLayout(layout_skeleton)
         self.setCentralWidget(window)
 
     @QtCore.Slot()
