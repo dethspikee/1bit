@@ -6,14 +6,6 @@ local environement.
 
 ![1bit GIF Demo](demo/demo.gif)
 
-Contents
-========
-
- * [Why?](#why)
- * [Installation](#installation)
- * [Usage](#usage)
- * [Future plans](#future-plans)
-
 ### Why?
 
 Most tools I found required Internet connection and provided too many features. I needed something small that could work
