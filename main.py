@@ -81,8 +81,8 @@ class MainWindow(QtWidgets.QMainWindow):
         try:
             img_bytearray = convert(self.filename)
             self.textedit.setText(img_bytearray)
-        except:
-            pass
+        except Exception as e:
+            self.status.showMessage(f'{e}')
         else:
             self.status.showMessage(f'Converted {self.filename} to byte array')
 
