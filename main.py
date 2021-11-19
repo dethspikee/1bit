@@ -4,7 +4,7 @@ import io
 from PySide2 import QtCore, QtWidgets, QtGui
 from PIL import Image
 
-from converter import convert
+from converter import convert, resize
 
 
 class MainWindow(QtWidgets.QMainWindow):
@@ -89,15 +89,13 @@ class MainWindow(QtWidgets.QMainWindow):
     @QtCore.Slot()
     def preview(self):
         self.preview_btn.setDisabled(True)
-        img = Image.open(self.filename)
-        img_converted = img.resize((128, 64)).convert('1', dither=Image.NONE)
-        bytes_img = io.BytesIO()
-        img_converted.save(bytes_img, format=img.format)
-        qimg = QtGui.QImage()
-        qimg.loadFromData(bytes_img.getvalue())
-        pixmap = QtGui.QPixmap(qimg)
-        self.label.setPixmap(pixmap)
-        self.status.showMessage(f'Previewing {self.filename} as 1-bit bitmap')
+        try:
+            pixmap = resize(self.filename)
+            self.label.setPixmap(pixmap)
+        except Exception as e:
+            self.status.showMessage(f'{e}')
+        else:
+            self.status.showMessage(f'Previewing {self.filename} as 1-bit bitmap')
 
     @QtCore.Slot()
     def open_file_dialog(self):
