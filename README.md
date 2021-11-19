@@ -1,4 +1,4 @@
-# 1bit GUI
+# 1bit gui
 
 `1bit gui edition` lets you easily transform your favourite images into [OLED
 128x64](https://create.arduino.cc/projecthub/najad/interfacing-and-displaying-images-on-oled-59344a) friendly byte array straight from your
