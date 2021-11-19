@@ -95,7 +95,9 @@ class MainWindow(QtWidgets.QMainWindow):
         except Exception as e:
             self.status.showMessage(f'{e}')
         else:
-            self.status.showMessage(f'Previewing {self.filename} as 1-bit bitmap')
+            self.status.showMessage(
+                f'Previewing {self.filename} as 1-bit bitmap'
+            )
 
     @QtCore.Slot()
     def open_file_dialog(self):
@@ -107,8 +109,14 @@ class MainWindow(QtWidgets.QMainWindow):
 
         pixmap = QtGui.QPixmap(self.filename)
         pixmap_w, pixmap_h = pixmap.size().width(), pixmap.size().height()
-        if not (pixmap_w < self.computedWidth and pixmap_h < self.computedHeight):
-            pixmap = pixmap.scaled(self.computedWidth, self.computedHeight, QtCore.Qt.KeepAspectRatio)
+        if not (
+            pixmap_w < self.computedWidth and pixmap_h < self.computedHeight
+        ):
+            pixmap = pixmap.scaled(
+                self.computedWidth,
+                self.computedHeight,
+                QtCore.Qt.KeepAspectRatio,
+            )
         self.label.setPixmap(pixmap)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.status.showMessage(f'{self.filename} loaded successfully')

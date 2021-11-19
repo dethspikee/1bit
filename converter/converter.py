@@ -6,8 +6,7 @@ import numpy as np
 
 
 def convert(filename, threshold=None):
-    """
-    """
+    """ """
     BYTE_SIZE = 8
     WIDTH = 128
     HEIGHT = 64
