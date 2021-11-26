@@ -46,6 +46,8 @@ class MainWindow(QtWidgets.QMainWindow):
         window = QtWidgets.QWidget()
 
         self.label = QtWidgets.QLabel(parent=self)
+        self.label_for_slider = QtWidgets.QLabel(parent=self)
+        self.label_for_slider.setText('0')
         self.textedit = QtWidgets.QTextEdit()
 
         self.label.setSizePolicy(
@@ -77,9 +79,13 @@ class MainWindow(QtWidgets.QMainWindow):
         button_layout = QtWidgets.QHBoxLayout()
         button_layout.addWidget(self.preview_btn)
         button_layout.addWidget(self.convert_btn)
-        button_layout.addWidget(self.slider)
+
+        threshold_layout = QtWidgets.QHBoxLayout()
+        threshold_layout.addWidget(self.slider)
+        threshold_layout.addWidget(self.label_for_slider)
 
         layout_skeleton.addLayout(top_layout)
+        layout_skeleton.addLayout(threshold_layout)
         layout_skeleton.addLayout(button_layout)
 
         window.setLayout(layout_skeleton)
@@ -87,7 +93,8 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def get_slider_value(self):
-        print(self.slider.value())
+        value = str(self.slider.value())
+        self.label_for_slider.setText(value)
 
     @QtCore.Slot()
     def get_bytes(self):
