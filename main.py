@@ -63,11 +63,12 @@ class MainWindow(QtWidgets.QMainWindow):
         self.convert_btn.setDisabled(True)
 
         # Black / White Threshold Slider
-        self.slider = QtWidgets.QSlider(parent=self, orientation=QtCore.Qt.Horizontal)
+        self.slider = QtWidgets.QSlider(
+            parent=self, orientation=QtCore.Qt.Horizontal
+        )
         self.slider.sliderMoved.connect(self.get_slider_value)
         self.slider.setMinimum(-1)
         self.slider.setMaximum(256)
-
 
         # Layout
         window = QtWidgets.QWidget()
