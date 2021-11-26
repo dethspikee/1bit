@@ -42,9 +42,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.computedHeight = self.geometry.height() * 0.5
         self.setFixedSize(self.computedWidth, self.computedHeight)
 
-        # Layout
-        window = QtWidgets.QWidget()
-
+        ## Widgets
+        # Labels and text edits
         self.label = QtWidgets.QLabel(parent=self)
         self.label_for_slider = QtWidgets.QLabel(parent=self)
         self.label_for_slider.setText('0')
@@ -69,6 +68,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.slider.setMinimum(-1)
         self.slider.setMaximum(256)
 
+
+        # Layout
+        window = QtWidgets.QWidget()
 
         layout_skeleton = QtWidgets.QVBoxLayout()
 
