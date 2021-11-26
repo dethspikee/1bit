@@ -61,6 +61,10 @@ class MainWindow(QtWidgets.QMainWindow):
         self.preview_btn.setDisabled(True)
         self.convert_btn.setDisabled(True)
 
+        # Black / White Threshold Slider
+        self.slider = QtWidgets.QSlider(parent=self, orientation=QtCore.Qt.Horizontal)
+
+
         layout_skeleton = QtWidgets.QVBoxLayout()
 
         top_layout = QtWidgets.QHBoxLayout()
@@ -70,6 +74,7 @@ class MainWindow(QtWidgets.QMainWindow):
         button_layout = QtWidgets.QHBoxLayout()
         button_layout.addWidget(self.preview_btn)
         button_layout.addWidget(self.convert_btn)
+        button_layout.addWidget(self.slider)
 
         layout_skeleton.addLayout(top_layout)
         layout_skeleton.addLayout(button_layout)
