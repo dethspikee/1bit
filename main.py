@@ -52,6 +52,7 @@ class MainWindow(QtWidgets.QMainWindow):
             QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored
         )
 
+        # Buttons
         self.preview_btn = QtWidgets.QPushButton('Preview')
         self.preview_btn.clicked.connect(self.preview)
         self.convert_btn = QtWidgets.QPushButton('Convert')
