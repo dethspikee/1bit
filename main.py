@@ -63,6 +63,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
         # Black / White Threshold Slider
         self.slider = QtWidgets.QSlider(parent=self, orientation=QtCore.Qt.Horizontal)
+        self.slider.sliderMoved.connect(self.get_slider_value)
+        self.slider.setMinimum(-1)
+        self.slider.setMaximum(256)
 
 
         layout_skeleton = QtWidgets.QVBoxLayout()
@@ -81,6 +84,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
         window.setLayout(layout_skeleton)
         self.setCentralWidget(window)
+
+    @QtCore.Slot()
+    def get_slider_value(self):
+        print(self.slider.value())
 
     @QtCore.Slot()
     def get_bytes(self):
