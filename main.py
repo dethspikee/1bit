@@ -68,8 +68,8 @@ class MainWindow(QtWidgets.QMainWindow):
         )
         self.slider.sliderMoved.connect(self.get_slider_value)
         self.slider.valueChanged.connect(self.get_slider_value)
-        self.slider.setMinimum(-1)
-        self.slider.setMaximum(256)
+        self.slider.setMinimum(0)
+        self.slider.setMaximum(255)
 
         # Layout
         window = QtWidgets.QWidget()
