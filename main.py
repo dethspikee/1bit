@@ -67,6 +67,7 @@ class MainWindow(QtWidgets.QMainWindow):
             parent=self, orientation=QtCore.Qt.Horizontal
         )
         self.slider.sliderMoved.connect(self.get_slider_value)
+        self.slider.valueChanged.connect(self.get_slider_value)
         self.slider.setMinimum(-1)
         self.slider.setMaximum(256)
 
