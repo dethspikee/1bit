@@ -46,7 +46,7 @@ class MainWindow(QtWidgets.QMainWindow):
         # Labels and text edits
         self.label = QtWidgets.QLabel(parent=self)
         self.label_for_slider = QtWidgets.QLabel(parent=self)
-        self.label_for_slider.setText('0')
+        self.label_for_slider.setText('Threshold: 0')
         self.textedit = QtWidgets.QTextEdit()
 
         self.label.setSizePolicy(
@@ -98,7 +98,7 @@ class MainWindow(QtWidgets.QMainWindow):
     @QtCore.Slot()
     def get_slider_value(self):
         value = str(self.slider.value())
-        self.label_for_slider.setText(value)
+        self.label_for_slider.setText(f'Threshold: {value}')
 
     @QtCore.Slot()
     def get_bytes(self):
