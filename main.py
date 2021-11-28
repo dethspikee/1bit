@@ -97,8 +97,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def get_slider_value(self):
-        value = str(self.slider.value())
+        value = self.slider.value()
         self.label_for_slider.setText(f'Threshold: {value}')
+        return value
 
     @QtCore.Slot()
     def get_bytes(self):
@@ -112,9 +113,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def preview(self):
-        self.preview_btn.setDisabled(True)
+        threshold = self.get_slider_value()
         try:
-            pixmap = resize(self.filename)
+            pixmap = resize(self.filename, threshold)
             self.label.setPixmap(pixmap)
         except Exception as e:
             self.status.showMessage(f'{e}')
