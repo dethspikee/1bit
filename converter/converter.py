@@ -44,12 +44,17 @@ def convert(filename, threshold=None):
     return ','.join(bit for bit in bytelist)
 
 
-def resize(filename):
+def resize(filename, threshold=0):
     from PySide2 import QtGui
 
     img = Image.open(filename)
     img_resized = img.resize((128, 64))
-    img_onebit = img_resized.convert('1', dither=Image.NONE)
+    if threshold == 0:
+        img_onebit = img_resized.convert('1', dither=Image.NONE)
+    else:
+        img_l = img_resized.convert('L')
+        img_l = img_l.point(lambda x: 255 if x > int(threshold) else 0)
+        img_onebit = img_l.convert('1')
     img_bytes = io.BytesIO()
     img_onebit.save(img_bytes, format=img.format)
     qimg = QtGui.QImage()
