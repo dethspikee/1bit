@@ -48,6 +48,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.label_for_slider = QtWidgets.QLabel(parent=self)
         self.label_for_slider.setText('Threshold: 0')
         self.textedit = QtWidgets.QTextEdit()
+        self.threshold_check = QtWidgets.QCheckBox(parent=self, text='Apply threshold')
 
         self.label.setSizePolicy(
             QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored
@@ -85,6 +86,7 @@ class MainWindow(QtWidgets.QMainWindow):
         button_layout.addWidget(self.convert_btn)
 
         threshold_layout = QtWidgets.QHBoxLayout()
+        threshold_layout.addWidget(self.threshold_check)
         threshold_layout.addWidget(self.slider)
         threshold_layout.addWidget(self.label_for_slider)
 
@@ -113,9 +115,10 @@ class MainWindow(QtWidgets.QMainWindow):
 
     @QtCore.Slot()
     def preview(self):
-        threshold = self.get_slider_value()
+        threshold_value = self.get_slider_value()
+        threshold_set = self.threshold_check.isChecked()
         try:
-            pixmap = resize(self.filename, threshold)
+            pixmap = resize(self.filename, threshold_value, threshold_set)
             self.label.setPixmap(pixmap)
         except Exception as e:
             self.status.showMessage(f'{e}')
