@@ -7,8 +7,7 @@
 
 ### Why?
 
-Most tools I found required Internet connection and provided too many features. I needed something small that could work
-alongside my Arduino IDE, and more importantly, something that'd work offline. Current version allows you to preview the
+Most tools I found required Internet connection. I needed something small, compact and usable offline. Current version allows you to preview the
 end result.
 
 ### Installation
