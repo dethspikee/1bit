@@ -42,13 +42,14 @@ class MainWindow(QtWidgets.QMainWindow):
         self.computedHeight = self.geometry.height() * 0.5
         self.setFixedSize(self.computedWidth, self.computedHeight)
 
-        ## Widgets
+        # Widgets
         # Labels and text edits
         self.label = QtWidgets.QLabel(parent=self)
         self.label_for_slider = QtWidgets.QLabel(parent=self)
         self.label_for_slider.setText('Threshold: 0')
         self.textedit = QtWidgets.QTextEdit()
-        self.threshold_check = QtWidgets.QCheckBox(parent=self, text='Apply threshold')
+        self.threshold_check = QtWidgets.QCheckBox(
+            parent=self, text='Apply threshold')
 
         self.label.setSizePolicy(
             QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored
