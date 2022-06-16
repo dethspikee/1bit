@@ -22,3 +22,4 @@ Execute `main.py`.
 
 Add input for threshold values to be able to specify point of conversion between white and black pixels. Without it some
 images are not converted properly causing low visiblity.
+
